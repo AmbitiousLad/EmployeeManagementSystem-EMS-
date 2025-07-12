@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Payroll Detail{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 bg-white p-5 shadow rounded">
+    <h2 class="text-primary text-center">Payroll Details</h2>
+
+    <ul class="list-group mt-4">
+        <li class="list-group-item"><strong>Employee:</strong> {{ payroll.employee.username }}</li>
+        <li class="list-group-item"><strong>Month:</strong> {{ payroll.salary_month|date:"F Y" }}</li>
+        <li class="list-group-item"><strong>Basic Salary:</strong> ₹{{ payroll.basic_salary }}</li>
+        <li class="list-group-item"><strong>Bonus:</strong> ₹{{ payroll.bonus }}</li>
+        <li class="list-group-item"><strong>Deductions:</strong> ₹{{ payroll.deductions }}</li>
+        <li class="list-group-item"><strong>Net Salary:</strong> ₹{{ payroll.net_salary }}</li>
+    </ul>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'payroll_list' %}" class="btn btn-outline-primary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

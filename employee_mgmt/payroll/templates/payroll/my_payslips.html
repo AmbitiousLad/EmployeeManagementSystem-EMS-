@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}My Payslips{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="text-white">My Payslips</h2>
+</div>
+
+<div class="table-responsive bg-white shadow rounded p-4">
+    <table class="table table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Month</th>
+                <th>Basic</th>
+                <th>Bonus</th>
+                <th>Deductions</th>
+                <th>Net Salary</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payroll in payrolls %}
+            <tr>
+                <td>{{ payroll.salary_month|date:"F Y" }}</td>
+                <td>₹{{ payroll.basic_salary }}</td>
+                <td>₹{{ payroll.bonus }}</td>
+                <td>₹{{ payroll.deductions }}</td>
+                <td>₹{{ payroll.net_salary }}</td>
+                <td><a href="{% url 'payroll_detail' payroll.pk %}" class="btn btn-sm btn-outline-success">View</a></td> 
+                {% comment %} <td><a href="{% url 'payroll_detail' %}" class="btn btn-sm btn-outline-success">View</a></td> {% endcomment %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No payslips available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

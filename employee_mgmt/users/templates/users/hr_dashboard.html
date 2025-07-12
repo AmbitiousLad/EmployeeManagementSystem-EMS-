@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}HR Dashboard{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="fw-bold mb-3 text-white display-5">Welcome HR, {{ user.username }}!</h2>
+    <p class="lead text-light mb-4">
+        This is your <span class="fw-semibold">HR Dashboard</span>. You can manage employee records, track attendance, and handle leave requests efficiently.
+    </p>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'employee_list' %}" class="btn btn-primary w-100 py-3 shadow">
+                <i class="fas fa-users me-2"></i>Manage Employees
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'all_attendance' %}" class="btn btn-success w-100 py-3 shadow">
+                <i class="fas fa-calendar-alt me-2"></i>View Attendance
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'manage_leaves' %}" class="btn btn-warning w-100 py-3 shadow text-dark">
+                <i class="fas fa-file-alt me-2"></i>Manage Leaves
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

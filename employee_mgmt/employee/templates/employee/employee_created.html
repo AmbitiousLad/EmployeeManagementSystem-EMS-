@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-success">
+    <h4>Employee Created Successfully!</h4>
+    <p><strong>Username:</strong> {{ username }}</p>
+    <p><strong>Password:</strong> {{ password }}</p>
+</div>
+<a href="{% url 'employee_list' %}" class="btn btn-primary">Go to Employee List</a>
+{% endblock %}

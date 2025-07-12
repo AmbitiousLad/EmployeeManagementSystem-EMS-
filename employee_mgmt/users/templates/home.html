@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Home | EMS{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 80vh;">
+    
+    <!-- Animated Lottie Illustration -->
+    <div style="max-width: 300px;">
+        <lottie-player
+            src="https://assets3.lottiefiles.com/packages/lf20_jcikwtux.json"
+            background="transparent"
+            speed="1"
+            style="width: 100%; height: 300px;"
+            loop
+            autoplay>
+        </lottie-player>
+    </div>
+
+    <!-- Welcome Message -->
+    <h1 class="fw-bold text-primary mb-3 text-white">Welcome to Employee Management System</h1>
+    
+    {% if user.is_authenticated %}
+        <p class="lead mb-4 text-white">Hello, <strong>{{ user.username }}</strong> 👋</p>
+
+        {% if user.role == 'admin' %}
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-primary btn-lg">Go to Admin Dashboard</a>
+        {% elif user.role == 'hr' %}
+            <a href="{% url 'hr_dashboard' %}" class="btn btn-primary btn-lg">Go to HR Dashboard</a>
+        {% elif user.role == 'employee' %}
+            <a href="{% url 'employee_dashboard' %}" class="btn btn-primary btn-lg">Go to Your Dashboard</a>
+        {% endif %}
+    
+    {% else %}
+        <div class="d-flex gap-3 mt-3">
+            <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">Register</a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Footer -->
+<footer class="text-center py-4 mt-auto bg-light border-top">
+    <p class="mb-0 text-muted">© {{ now|date:"Y" }} Employee Management System. All rights reserved.</p>
+</footer>
+
+<!-- Lottie Script CDN -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+{% endblock %}

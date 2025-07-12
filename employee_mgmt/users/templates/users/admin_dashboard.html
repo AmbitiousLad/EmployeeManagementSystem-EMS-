@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2 class="fw-bold mb-3 text-white display-5">Welcome, Admin!</h2>
+    <p class="lead text-light mb-4">
+        This is your <span class="fw-semibold">Admin Dashboard</span>. From here, you can manage the entire system and oversee employee operations.
+    </p>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'employee_list' %}" class="btn btn-primary w-100 py-3 shadow">
+                <i class="fas fa-users me-2"></i>View All Employees
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'manage_leaves' %}" class="btn btn-warning w-100 py-3 shadow text-dark">
+                <i class="fas fa-file-alt me-2"></i>Manage Leave Requests
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'all_attendance' %}" class="btn btn-success w-100 py-3 shadow">
+                <i class="fas fa-calendar-alt me-2"></i>View Attendance Logs
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

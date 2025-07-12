@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Mark Attendance{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-4">Mark Attendance</h2>
+
+        <p class="text-muted mb-3">Date: <strong>{{ attendance.date }}</strong></p>
+
+        {% if attendance.check_in_time %}
+            <p class="text-success">✅ Checked in at: <strong>{{ attendance.check_in_time|date:"H:i:s" }}</strong></p>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="check_in">
+                <button type="submit" class="btn btn-success w-100 mb-3">✔️ Check In</button>
+            </form>
+        {% endif %}
+
+        {% if attendance.check_in_time and not attendance.check_out_time %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="check_out">
+                <button type="submit" class="btn btn-warning w-100">⏹️ Check Out</button>
+            </form>
+        {% elif attendance.check_out_time %}
+            <p class="text-info">⏹️ Checked out at: <strong>{{ attendance.check_out_time|date:"H:i:s" }}</strong></p>
+        {% endif %}
+
+        <div class="mt-4 text-center">
+            <a href="{% url 'attendance_list' %}" class="btn btn-outline-primary">🔙 Back to My Attendance</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Add Payroll{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 bg-white p-5 shadow rounded">
+    <h2 class="mb-4 text-center text-primary">Add Payroll Entry</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">💾 Save Payroll</button>
+            <a href="{% url 'payroll_list' %}" class="btn btn-outline-secondary ms-2">Back</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

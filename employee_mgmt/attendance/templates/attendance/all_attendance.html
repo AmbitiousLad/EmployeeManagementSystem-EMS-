@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}All Attendance Records{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">All Employee Attendance for {{ today }}</h2>
+
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee</th>
+                <th>Role</th>
+                <th>Date</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for att in attendance_list %}
+                <tr class="{% if att.status == 'absent' %}table-danger{% endif %}">
+                    <td>{{ att.employee.username }}</td>
+                    {% if att.employee.role == "" %}
+                        <td> Super Admin </td>
+                    {% else %}
+                    <td>{{ att.employee.role }}</td>
+                    {% endif %}
+                    <td>{{ att.date }}</td>
+                    <td>{{ att.check_in_time|default:"--" }}</td>
+                    <td>{{ att.check_out_time|default:"--" }}</td>
+                    <td class="text-capitalize">
+                        {% if att.status == "absent" %}
+                            <span class="badge bg-danger">Absent</span>
+                        {% elif att.status == "present" %}
+                            <span class="badge bg-success">Present</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ att.status }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No records available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

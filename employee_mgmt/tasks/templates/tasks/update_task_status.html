@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Update Task Status{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Update Task Status</h2>
+    <form method="post" class="p-4 shadow rounded bg-light">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="id_status" class="form-label">Status</label>
+            {{ form.status }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("select");
+        fields.forEach(field => {
+            if (!field.classList.contains("form-select")) {
+                field.classList.add("form-select");
+            }
+        });
+    });
+</script>
+{% endblock %}

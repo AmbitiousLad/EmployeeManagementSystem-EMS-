@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Assign Task{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Assign Task</h2>
+    <form method="post" class="p-4 border rounded bg-light shadow">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_employee" class="form-label">Employee</label>
+            {{ form.employee }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_title" class="form-label">Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_description" class="form-label">Description</label>
+            {{ form.description }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_due_date" class="form-label">Due Date</label>
+            {{ form.due_date }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_status" class="form-label">Status</label>
+            {{ form.status }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Assign</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("input, select, textarea");
+        fields.forEach(field => {
+            if (field.tagName === "SELECT") {
+                field.classList.add("form-select");
+            } else {
+                field.classList.add("form-control");
+            }
+        });
+    });
+</script>
+{% endblock %}

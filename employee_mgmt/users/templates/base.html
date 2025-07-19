@@ -420,6 +420,19 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="taskDropdown" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-tasks me-1"></i>Tasks
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="taskDropdown">
+                    {% if user.role == 'admin' or user.role == 'hr' %}
+                    <li><a class="dropdown-item" href="{% url 'assign_task' %}">Assign Task</a></li>
+                    <li><a class="dropdown-item" href="{% url 'task_list' %}">All Tasks</a></li>
+                    {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'my_latest_task' %}">My Latest Task</a></li>
+                </ul>
+            </li>
+
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="PayrollDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

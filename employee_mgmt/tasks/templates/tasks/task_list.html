@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">All Tasks</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Assigned Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.employee.username }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.assigned_date }}</td>
+                <td>{{ task.due_date }}</td>
+                <td>
+                    <span class="badge bg-{{ task.status|yesno:'secondary,warning,success' }}">
+                        {{ task.get_status_display }}
+                    </span>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No tasks assigned.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

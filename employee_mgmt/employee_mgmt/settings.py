@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'attendance',
     'leave',
     'payroll',
+    'tasks',
 ]
 
 MIDDLEWARE = [

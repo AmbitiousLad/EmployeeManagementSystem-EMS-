@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}My Latest Task{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">My Latest Task</h2>
+    {% if task %}
+        <div class="card shadow">
+            <div class="card-body">
+                <h4 class="card-title">{{ task.title }}</h4>
+                <p class="card-text"><strong>Description:</strong> {{ task.description }}</p>
+                <p><strong>Assigned:</strong> {{ task.assigned_date }}</p>
+                <p><strong>Due:</strong> {{ task.due_date }}</p>
+                <p><strong>Status:</strong> 
+                    <span class="badge bg-{{ task.status|yesno:'secondary,warning,success' }}">
+                        {{ task.get_status_display }}
+                    </span>
+                </p>
+                <a href="{% url 'update_task_status' task.pk %}" class="btn btn-success">Update Status</a>
+
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">No task assigned yet.</div>
+    {% endif %}
+</div>
+{% endblock %}

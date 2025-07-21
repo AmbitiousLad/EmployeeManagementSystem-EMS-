@@ -8,6 +8,8 @@ class CustomUser(AbstractUser):
         ('hr','HR'),
         ('employee','Employee'),
     )
+    is_verified = models.BooleanField(default=False)
+    otp_code = models.CharField(max_length=6, blank=True, null=True)
     role = models.CharField(max_length=10,choices=ROLE_CHOICES)
     image= models.ImageField(upload_to='profile_pic/',default='default.png')
 

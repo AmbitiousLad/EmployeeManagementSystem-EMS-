@@ -33,6 +33,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Example using Gmail SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'routsanket00@gmail.com'        # Replace with your email
+EMAIL_HOST_PASSWORD = 'word1234'       # Use App Password (not your Gmail password)
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Application definition
 
@@ -50,6 +59,7 @@ INSTALLED_APPS = [
     'payroll',
     'tasks',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

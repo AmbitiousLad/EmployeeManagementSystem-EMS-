@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ems-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ems
+  template:
+    metadata:
+      labels:
+        app: ems
+    spec:
+      containers:
+      - name: ems-container
+        image: your-dockerhub-username/ems-app:latest
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: sqlite-storage
+          mountPath: /app/db.sqlite3
+          subPath: db.sqlite3
+      volumes:
+      - name: sqlite-storage
+        hostPath:
+          path: /data/ems
+          type: DirectoryOrCreate

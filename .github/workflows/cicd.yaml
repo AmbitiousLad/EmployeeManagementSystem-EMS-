@@ -18,8 +18,8 @@ jobs:
       with:
         projectBaseDir: .
         args: >
-          -Dsonar.projectKey=your_project_key
-          -Dsonar.organization=your_org
+          -Dsonar.projectKey=AmbitiousLad_EmployeeManagementSystem-EMS-
+          -Dsonar.organization=ambitiouslad
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 

@@ -30,7 +30,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t sanket245/ems:${{ github.sha }} .
+      run: docker build -t sanket245/ems:${{ github.sha }} -f EmployeeManagementSystem-EMS-
+/employee_mgmt/ .
 
     - name: Trivy security scan
       uses: aquasecurity/trivy-action@master

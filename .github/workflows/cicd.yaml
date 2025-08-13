@@ -1,4 +1,4 @@
-name: CI/CD for EMS
+name: CI/CD for EMS (Docker Only)
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-test-deploy:
+  build-test-run:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,11 +40,9 @@ jobs:
     - name: Push Docker image
       run: docker push sanket245/ems:${{ github.sha }}
 
-    - name: Set up Minikube context
+    - name: Run Docker container
       run: |
-        minikube start --driver=docker --memory=4096 --cpus=2
-        kubectl config use-context minikube
-
-    - name: Deploy to Minikube
-      run: |
-        kubectl set image deployment/ems-deployment ems-container=sanket245/ems:${{ github.sha }}
+        docker run -d \
+        --name ems-container \
+        -p 8080:8080 \
+        sanket245/ems:${{ github.sha }}
